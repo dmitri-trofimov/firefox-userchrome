@@ -1,3 +1,5 @@
+<img src=".github/vibe.svg" alt="vibe" height="20">
+
 # Firefox: Chrome-like bookmarks toolbar
 
 A small `userChrome.css` that makes the Firefox bookmarks toolbar match Chrome's spacing: the bar height, the button padding and margins, the gap between icon and label, and the hover shape.
