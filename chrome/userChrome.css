@@ -1,0 +1,85 @@
+/* ==========================================================================
+   Chrome-like bookmarks toolbar for Firefox
+   Mirrors Chrome's (Refresh 2023) desktop layout constants:
+     - bookmark button height: 28px
+     - bookmark bar height:    28px + 4px bottom margin = 32px
+     - favicon 16px, ~6px gap to label, ~8px horizontal button padding
+   Tweak the variables below to taste.
+   ========================================================================== */
+
+:root {
+  /* The nav-bar already leaves ~4px under the URL bar, so top is smaller
+     to make (URL bar -> hover highlight) == (hover highlight -> page). */
+  --cbb-bar-padding-top: 2px;
+  --cbb-bar-padding-bottom: 6px;
+  --cbb-bar-padding-inline: 8px;   /* left/right inset of the whole bar   */
+
+  --cbb-button-height: 28px;
+  --cbb-button-padding-inline: 8px;/* inner left/right padding of a button */
+  --cbb-button-gap: 0px;           /* space between adjacent buttons      */
+  --cbb-icon-label-gap: 6px;       /* favicon -> text                     */
+  --cbb-button-radius: 8px;        /* hover/pressed background radius     */
+}
+
+/* ---- Bar ---------------------------------------------------------------- */
+#PersonalToolbar:not([collapsed="true"]) {
+  min-height: calc(var(--cbb-button-height) + var(--cbb-bar-padding-top) + var(--cbb-bar-padding-bottom)) !important;
+  max-height: none !important;
+  padding: var(--cbb-bar-padding-top) var(--cbb-bar-padding-inline) var(--cbb-bar-padding-bottom) !important;
+  /* neutralise density-dependent padding (compact/normal/touch) */
+  --bookmark-block-padding: 0px !important;
+}
+
+#PersonalToolbar #personal-bookmarks,
+#PersonalToolbar #PlacesToolbar,
+#PersonalToolbar #PlacesToolbarItems {
+  min-height: var(--cbb-button-height) !important;
+  align-items: center !important;
+}
+
+/* ---- Buttons (bookmarks, folders, "Other bookmarks", chevron) ------------ */
+#PersonalToolbar toolbarbutton.bookmark-item:not(.subviewbutton),
+#PersonalToolbar #PlacesChevron,
+#PersonalToolbar #import-button {
+  height: var(--cbb-button-height) !important;
+  min-height: var(--cbb-button-height) !important;
+  margin: 0 !important;
+  margin-inline-end: var(--cbb-button-gap) !important;
+  padding: 0 var(--cbb-button-padding-inline) !important;
+  border-radius: var(--cbb-button-radius) !important;
+  align-items: center !important;
+}
+
+#PersonalToolbar #PlacesChevron {
+  padding: 0 6px !important;
+}
+
+/* Favicon */
+#PersonalToolbar .bookmark-item > .toolbarbutton-icon {
+  width: 16px !important;
+  height: 16px !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+/* Label */
+#PersonalToolbar .bookmark-item > .toolbarbutton-text {
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+#PersonalToolbar .bookmark-item > .toolbarbutton-icon + .toolbarbutton-text,
+#PersonalToolbar .bookmark-item > .toolbarbutton-icon:not([hidden]) ~ .toolbarbutton-text {
+  margin-inline-start: var(--cbb-icon-label-gap) !important;
+}
+
+/* Icon-only bookmarks (empty title) become square like in Chrome */
+#PersonalToolbar toolbarbutton.bookmark-item:not(.subviewbutton)[label=""] {
+  padding: 0 calc((var(--cbb-button-height) - 16px) / 2) !important;
+}
+
+/* Separators */
+#PersonalToolbar toolbarseparator {
+  margin-block: 6px !important;
+  margin-inline: 4px !important;
+}
