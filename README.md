@@ -1,4 +1,4 @@
-<img src=".github/vibe.svg" alt="vibe" height="20">
+> This project was <img src=".github/vibe.svg" alt="vibe-coded" height="22" align="absmiddle"> — no engineers were harmed in the making of it.
 
 # Firefox: Chrome-like bookmarks toolbar
 
